@@ -1,2 +1,5 @@
 classpath:/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-domain/target/classes	46:af4cdcf70505755395bab13f04bf29d389515b7f7a1fdc4042e5140c0b10c73f
 classpath:/Users/alexis_reyna/.m2/repository/org/bouncycastle/bcprov-jdk18on/1.78.1/bcprov-jdk18on-1.78.1.jar	8324412:1713426313000
+classpath:/Users/alexis_reyna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.18.2/jackson-databind-2.18.2.jar	1658755:1732756356000
+classpath:/Users/alexis_reyna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar	78494:1732754140000
+classpath:/Users/alexis_reyna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.18.2/jackson-core-2.18.2.jar	597807:1732755405000

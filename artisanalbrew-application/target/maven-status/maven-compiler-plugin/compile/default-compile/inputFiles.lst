@@ -1,4 +1,5 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/common/SlugGenerator.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/config/BlockchainManifestLoader.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/config/BlockchainNetworkOptions.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/config/BlockchainOptions.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/config/ChainCapabilities.java
@@ -61,7 +62,12 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/BundlerUserOperation.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/CouponService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DatabaseSchemaService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DefaultCouponService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DefaultOrderPricingService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DefaultOrderService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DefaultProductService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DefaultProfileService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/DefaultTransparencyService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/EntryPointConfirmation.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/EntryPointConfirmationReader.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/IdentityAccount.java
@@ -101,6 +107,8 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/CoffeeDashboardModel.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/CoffeeWeb3Service.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/ConfirmationCalculator.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/DefaultLiquidStakingLedgerService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/DefaultStakingLedgerService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/EthUsdPriceService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/LiquidStakingDashboard.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/LiquidStakingGateway.java
@@ -124,6 +132,12 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/StakingVerificationResult.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/TransactionVerificationStatus.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/blockchain/WalletAddressRules.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/commerce/AgenticCommerceReconciliationApplicator.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/commerce/DefaultAgenticCommerceReconciliationApplicator.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/commerce/EscrowEvent.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/commerce/EscrowEventType.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/commerce/RegistryEvent.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/DefaultLoyaltyMintService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/LoyaltyMintCommand.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/LoyaltyMintResult.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/LoyaltyMintService.java

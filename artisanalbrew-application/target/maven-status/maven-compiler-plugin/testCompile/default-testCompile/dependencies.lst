@@ -1,6 +1,9 @@
-classpath:/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/target/classes	152:8cad56dda67875d494c604cf3caad7626f167ee326cb755b72a83fad393b1d2c
+classpath:/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/target/classes	169:8343076bf27f97a3a95b152ae518d7f8b123332af76b6cc1a3d6bc5cb3062010
 classpath:/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-domain/target/classes	46:af4cdcf70505755395bab13f04bf29d389515b7f7a1fdc4042e5140c0b10c73f
 classpath:/Users/alexis_reyna/.m2/repository/org/bouncycastle/bcprov-jdk18on/1.78.1/bcprov-jdk18on-1.78.1.jar	8324412:1713426313000
+classpath:/Users/alexis_reyna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.18.2/jackson-databind-2.18.2.jar	1658755:1732756356000
+classpath:/Users/alexis_reyna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar	78494:1732754140000
+classpath:/Users/alexis_reyna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.18.2/jackson-core-2.18.2.jar	597807:1732755405000
 classpath:/Users/alexis_reyna/.m2/repository/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar	6367:1734354527000
 classpath:/Users/alexis_reyna/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar	216413:1734354517000
 classpath:/Users/alexis_reyna/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar	14304:1688646332000

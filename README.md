@@ -23,9 +23,12 @@ artisanalbrew-application/       mirrors ThisCafeteria.Application (Phase 2a: po
   .../application/common/        SlugGenerator
 ```
 
-Phase 2b (next): use-case implementations (`ProductService`, `OrderService`,
+Phase 2b (next): ~~use-case implementations (`ProductService`, `OrderService`,
 `CouponService`, `ProfileService`, staking/ledger/loyalty services),
-`BlockchainManifestLoader`, `AgenticCommerceReconciliationApplicator`.
+`BlockchainManifestLoader`, `AgenticCommerceReconciliationApplicator`.~~ DONE —
+all `Default*` use-cases, `BlockchainManifestLoader` (Jackson, verified against
+the real committed manifests), and the reconciliation applicator live in this
+module; 42 application tests green.
 
 ## Build / test
 

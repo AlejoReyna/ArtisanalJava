@@ -1,0 +1,6 @@
+dev/alexisreyna/artisanalbrew/application/service/rewards/RewardCalculatorTest.class
+dev/alexisreyna/artisanalbrew/application/service/blockchain/BlockchainHelpersTest.class
+dev/alexisreyna/artisanalbrew/application/service/DefaultOrderPricingServiceTest.class
+dev/alexisreyna/artisanalbrew/application/validation/ValidatorsTest.class
+dev/alexisreyna/artisanalbrew/application/config/ChainRegistryTest.class
+dev/alexisreyna/artisanalbrew/application/common/SlugGeneratorTest.class

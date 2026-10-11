@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dev.alexisreyna.artisanalbrew</groupId>
+    <artifactId>artisanalbrew</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>artisanalbrew-application</artifactId>
+  <name>ArtisanalBrew Application</name>
+  <description>
+    Port of ThisCafeteria.Application: DTOs, repository/service ports, configuration
+    value objects, pure helpers, validation. Framework-free by design (no Spring):
+    only the domain module, Bouncy Castle (Keccak for EVM helpers) and test deps.
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>dev.alexisreyna.artisanalbrew</groupId>
+      <artifactId>artisanalbrew-domain</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk18on</artifactId>
+      <version>${bouncycastle.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

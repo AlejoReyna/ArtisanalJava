@@ -28,6 +28,9 @@ artisanalbrew-infrastructure/    mirrors ThisCafeteria.Infrastructure persistenc
   .../persistence/entity/        20 flat JPA rows, EF table/column names preserved
   .../persistence/repo/          Spring Data interfaces (incl. atomic tryConsume UPDATE)
   .../persistence/adapter/       all 13 repository ports + JPA UnitOfWork
+  .../infrastructure/service/    solver/quote policies, schema projection, bus stub
+  .../infrastructure/chain/evm/  web3j EVM gateways (Phase 6)
+  .../autoconfigure/             fail-closed defaults (loaded last, back off on real beans)
 artisanalbrew-web/                mirrors ThisCafeteria.Web HTTP surface (Phase 5a)
   ArtisanalBrewApplication + application.yml (PG-first, env secrets)
   .../web/api/                  all 14 REST controllers (AdminAuth → form login)
@@ -130,6 +133,20 @@ with Phase 8), Blazor → Thymeleaf UI.
 | `dotnet run` without a database (`hasDatabase=false`) | Not ported: the web module requires PostgreSQL (documented; H2 twin only for tests) |
 | Missing compiler `-parameters` | Added globally — without it Spring cannot bind `@RequestParam`/`@PathVariable` names (caught by a 400 in the first slice run) |
 | `@ConditionalOnMissingBean` on scanned `@Service` stubs | Silently drops beans — must live on an explicit `@Configuration` (`UnconfiguredChainServices`) |
+
+## Phase 6 notes (EVM gateways)
+
+| .NET (Nethereum) | Java here (web3j `4.14.0`) |
+|---|---|
+| `Web3` + contract wrappers + `IEventDTO` decoding | `EvmRpcClient` facade over `Web3j` + manual ABI word/event decoding (`EvmLogEvents`: indexed addresses from topics, values from data) |
+| `Function.GetFunction().CallAsync<T>` generics | web3j's `Function`/`decode` generics are invariant — decode 32-byte words manually instead of fighting `TypeReference` variance |
+| `Transaction.Value`/`Receipt.BlockNumber` as hex strings | web3j already returns `BigInteger` — compare/derive directly |
+| `record` optional parameters (`Confirmations = 0`) | Explicit `verified(amount)` factory on the port |
+| `SendTransactionAndWaitForReceiptAsync` (estimate + 50k, mine, receipt) | Same flow via `ethEstimateGas`/`ethSendRawTransaction`/poll in `Web3jCoffeeService.mintCoffeeCoin` |
+| `CoinGeckoETHApi` + `IMemoryCache` | JDK `HttpClient` + volatile holder, same 5-minute TTL |
+| Missing receipt in marketplace verify | Preserved asymmetry: not-yet-mined reads `Pending(0, min)`, never `Failed` |
+| Multi-constructor `@Service` | Fails autowiring — gateways are explicit `@Bean` methods (`ChainGatewayConfiguration`) with test-friendly constructors |
+| Fallback beans | Only reliable as `@AutoConfiguration` (imports file, outside scanned packages) with unique bean names; verified by a full-context test, not just slices |
 
 ## Fidelity checks
 

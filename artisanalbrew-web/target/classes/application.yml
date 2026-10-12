@@ -43,6 +43,9 @@ authentication:
   admin-email: ${AUTHENTICATION_ADMINEMAIL:}
   admin-password: ${AUTHENTICATION_ADMINPASSWORD:}
 
+coffee-coin-owner:
+  private-key: ${CoffeeCoinOwner__PrivateKey:}
+
 agent-gateway:
   service-secret: ${AGENT_GATEWAY_SERVICE_SECRET:}
 

@@ -1,4 +1,4 @@
-package dev.alexisreyna.artisanalbrew.infrastructure.stub;
+package dev.alexisreyna.artisanalbrew.autoconfigure;
 
 import dev.alexisreyna.artisanalbrew.application.service.SqsMessagePublisher;
 import dev.alexisreyna.artisanalbrew.application.service.blockchain.CoffeeWeb3Service;
@@ -6,9 +6,14 @@ import dev.alexisreyna.artisanalbrew.application.service.blockchain.LiquidStakin
 import dev.alexisreyna.artisanalbrew.application.service.blockchain.SolanaFaucetService;
 import dev.alexisreyna.artisanalbrew.application.service.rewards.RewardClaimService;
 import dev.alexisreyna.artisanalbrew.infrastructure.service.LoggingSqsMessagePublisher;
+import dev.alexisreyna.artisanalbrew.infrastructure.stub.UnconfiguredCoffeeWeb3Service;
+import dev.alexisreyna.artisanalbrew.infrastructure.stub.UnconfiguredLiquidStakingGateway;
+import dev.alexisreyna.artisanalbrew.infrastructure.stub.UnconfiguredRewardClaimService;
+import dev.alexisreyna.artisanalbrew.infrastructure.stub.UnconfiguredSolanaFaucetService;
+import dev.alexisreyna.artisanalbrew.infrastructure.service.LoggingSqsMessagePublisher;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 
 /**
  * Fail-closed defaults for services with no configured backend yet.
@@ -16,32 +21,36 @@ import org.springframework.context.annotation.Configuration;
  * because on component-scanned classes it is order-dependent and silently
  * drops beans. Real implementations back these off automatically.
  */
-@Configuration
+@AutoConfiguration
 public class UnconfiguredChainServices {
 
     @Bean
-    public CoffeeWeb3Service coffeeWeb3Service() {
+    @ConditionalOnMissingBean(CoffeeWeb3Service.class)
+    public CoffeeWeb3Service unconfiguredCoffeeWeb3Service() {
         return new UnconfiguredCoffeeWeb3Service();
     }
 
     @Bean
-    public LiquidStakingGateway liquidStakingGateway() {
+    @ConditionalOnMissingBean(LiquidStakingGateway.class)
+    public LiquidStakingGateway unconfiguredLiquidStakingGateway() {
         return new UnconfiguredLiquidStakingGateway();
     }
 
     @Bean
-    public SolanaFaucetService solanaFaucetService() {
+    @ConditionalOnMissingBean(SolanaFaucetService.class)
+    public SolanaFaucetService unconfiguredSolanaFaucetService() {
         return new UnconfiguredSolanaFaucetService();
     }
 
     @Bean
-    public RewardClaimService rewardClaimService() {
+    @ConditionalOnMissingBean(RewardClaimService.class)
+    public RewardClaimService unconfiguredRewardClaimService() {
         return new UnconfiguredRewardClaimService();
     }
 
     @Bean
     @ConditionalOnMissingBean(SqsMessagePublisher.class)
-    public SqsMessagePublisher sqsMessagePublisher() {
+    public SqsMessagePublisher loggingSqsMessagePublisher() {
         return new LoggingSqsMessagePublisher();
     }
 }

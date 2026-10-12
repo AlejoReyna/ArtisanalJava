@@ -1,4 +1,12 @@
-/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/config/InfrastructureDefaults.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/autoconfigure/InfrastructureDefaults.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/autoconfigure/UnconfiguredChainServices.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/ChainGatewayConfiguration.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/CoinGeckoEthUsdPriceService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/EvmLogEvents.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/EvmRpcClient.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/Web3jCoffeeService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/Web3jLiquidStakingGateway.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/chain/evm/Web3jMarketplacePaymentGateway.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/PersistenceConfiguration.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaAgenticCommerceProjectionBatch.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaCouponRepositoryAdapter.java
@@ -73,7 +81,7 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/service/DefaultIntentQuoteService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/service/DefaultSolverPolicyService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/service/LoggingSqsMessagePublisher.java
-/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredChainServices.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/service/rewards/DefaultRewardClaimService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredCoffeeWeb3Service.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredLiquidStakingGateway.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/main/java/dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredRewardClaimService.java

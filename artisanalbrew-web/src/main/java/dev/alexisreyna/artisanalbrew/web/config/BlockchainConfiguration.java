@@ -90,9 +90,17 @@ public class BlockchainConfiguration {
         return new SponsorshipPolicyOptions();
     }
 
+    /**
+     * Honors the exact .NET variable ({@code CoffeeCoinOwner__PrivateKey}) as
+     * well as the file-based value. Empty by default: minting stays disabled
+     * until an operator provides a key.
+     */
     @Bean
-    public CoffeeCoinOwnerOptions coffeeCoinOwnerOptions() {
-        return new CoffeeCoinOwnerOptions();
+    public CoffeeCoinOwnerOptions coffeeCoinOwnerOptions(
+            @Value("${coffee-coin-owner.private-key:${CoffeeCoinOwner__PrivateKey:}}") String privateKey) {
+        CoffeeCoinOwnerOptions options = new CoffeeCoinOwnerOptions();
+        options.setPrivateKey(privateKey == null || privateKey.isBlank() ? null : privateKey);
+        return options;
     }
 
     @Bean
@@ -144,19 +152,5 @@ public class BlockchainConfiguration {
     public LoyaltyMintService loyaltyMintService(CoffeeWeb3Service web3, RewardClaimRepository claims,
                                                  UnitOfWork unitOfWork) {
         return new DefaultLoyaltyMintService(web3, claims, unitOfWork);
-    }
-
-    @Bean
-    public MarketplacePaymentGateway marketplacePaymentGateway(CoffeeWeb3Service web3) {
-        // Single-chain checkout verifies native transfers through the legacy
-        // web3 service until the multichain marketplace gateway lands.
-        return (chainKey, transactionHash, expectedFromWallet, expectedAmount) ->
-                web3.verifyNativeEthPayment(transactionHash, expectedFromWallet, expectedAmount);
-    }
-
-    /** Demo ETH/USD rate until a price oracle lands (mirrors the fixed rate). */
-    @Bean
-    public dev.alexisreyna.artisanalbrew.application.service.blockchain.EthUsdPriceService ethUsdPriceService() {
-        return () -> new BigDecimal("3750.00");
     }
 }

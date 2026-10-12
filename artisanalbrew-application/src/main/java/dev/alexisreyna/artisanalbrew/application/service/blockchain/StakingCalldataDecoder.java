@@ -71,6 +71,35 @@ public final class StakingCalldataDecoder {
                 .anyMatch(sel -> input.regionMatches(true, 0, sel, 0, sel.length()));
     }
 
+    /** Reads the {@code index}-th 32-byte ABI word as an unsigned integer. */
+    public static Optional<BigInteger> tryDecodeUintAt(String input, int index) {
+        if (input == null) {
+            return Optional.empty();
+        }
+        int start = 10 + index * 64;
+        if (input.length() < start + 64) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(new BigInteger(input.substring(start, start + 64), 16));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
+
+    /** Reads the {@code index}-th 32-byte ABI word as an address (last 20 bytes). */
+    public static Optional<String> tryDecodeAddressAt(String input, int index) {
+        if (input == null) {
+            return Optional.empty();
+        }
+        int start = 10 + index * 64;
+        if (input.length() < start + 64) {
+            return Optional.empty();
+        }
+        String recipient = "0x" + input.substring(start + 24, start + 64);
+        return WalletAddressRules.isValidEthereumAddress(recipient) ? Optional.of(recipient) : Optional.empty();
+    }
+
     /** Ethereum Keccak-256 (not NIST SHA3) — shared primitive for signing helpers. */
     public static byte[] keccak256(byte[] input) {
         KeccakDigest digest = new KeccakDigest(256);

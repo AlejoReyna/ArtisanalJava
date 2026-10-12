@@ -16,6 +16,10 @@ public record StakingVerificationResult(
     public static final StakingVerificationResult FAILED =
             new StakingVerificationResult(TransactionVerificationStatus.FAILED, BigDecimal.ZERO, 0, 0);
 
+    public static StakingVerificationResult verified(BigDecimal amount) {
+        return new StakingVerificationResult(TransactionVerificationStatus.VERIFIED, amount, 0, 0);
+    }
+
     public static StakingVerificationResult pending(int confirmations, int requiredConfirmations) {
         return new StakingVerificationResult(
                 TransactionVerificationStatus.PENDING_CONFIRMATIONS, BigDecimal.ZERO, confirmations, requiredConfirmations);

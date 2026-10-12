@@ -11,4 +11,12 @@ public interface ApplicationUserJpaRepository extends JpaRepository<ApplicationU
     Optional<ApplicationUserEntity> findByUserProfileId(UUID userProfileId);
 
     List<ApplicationUserEntity> findAllByUserProfileId(UUID userProfileId);
+
+    Optional<ApplicationUserEntity> findByNormalizedEmail(String normalizedEmail);
+
+    Optional<ApplicationUserEntity> findByNormalizedUserName(String normalizedUserName);
+
+    Optional<ApplicationUserEntity> findFirstByWalletAddressIgnoreCase(String walletAddress);
+
+    Optional<ApplicationUserEntity> findByWalletAddress(String walletAddress);
 }

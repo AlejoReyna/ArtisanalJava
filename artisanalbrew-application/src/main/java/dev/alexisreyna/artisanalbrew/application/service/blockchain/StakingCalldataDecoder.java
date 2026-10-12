@@ -71,7 +71,8 @@ public final class StakingCalldataDecoder {
                 .anyMatch(sel -> input.regionMatches(true, 0, sel, 0, sel.length()));
     }
 
-    static byte[] keccak256(byte[] input) {
+    /** Ethereum Keccak-256 (not NIST SHA3) — shared primitive for signing helpers. */
+    public static byte[] keccak256(byte[] input) {
         KeccakDigest digest = new KeccakDigest(256);
         digest.update(input, 0, input.length);
         byte[] out = new byte[32];

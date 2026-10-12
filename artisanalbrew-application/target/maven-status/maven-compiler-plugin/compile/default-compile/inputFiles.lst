@@ -144,6 +144,9 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/LoyaltyMintStatus.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/RewardCalculator.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/rewards/RewardClaimService.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/wallet/EvmChallengeVerificationError.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/wallet/EvmWalletChallenge.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/wallet/EvmWalletChallengeService.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/wallet/SolanaChallengeVerificationError.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/wallet/SolanaWalletChallenge.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-application/src/main/java/dev/alexisreyna/artisanalbrew/application/service/wallet/SolanaWalletChallengeService.java

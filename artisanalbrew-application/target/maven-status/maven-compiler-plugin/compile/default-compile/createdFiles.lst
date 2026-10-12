@@ -3,6 +3,8 @@ dev/alexisreyna/artisanalbrew/application/config/ChainDefinition.class
 dev/alexisreyna/artisanalbrew/application/config/DefaultChainRegistry.class
 dev/alexisreyna/artisanalbrew/application/dto/CouponQuoteDto.class
 dev/alexisreyna/artisanalbrew/application/service/blockchain/StakingLedgerService$RecordStatus.class
+dev/alexisreyna/artisanalbrew/application/service/wallet/EvmWalletChallengeService$Verification.class
+dev/alexisreyna/artisanalbrew/application/service/wallet/EvmChallengeVerificationError.class
 dev/alexisreyna/artisanalbrew/application/config/CoffeeCoinOwnerOptions.class
 dev/alexisreyna/artisanalbrew/application/service/EntryPointConfirmation.class
 dev/alexisreyna/artisanalbrew/application/service/OrderPricingService.class
@@ -99,6 +101,7 @@ dev/alexisreyna/artisanalbrew/application/config/SponsorshipPolicyOptions.class
 dev/alexisreyna/artisanalbrew/application/service/rewards/LoyaltyMintStatus.class
 dev/alexisreyna/artisanalbrew/application/service/OrderService.class
 dev/alexisreyna/artisanalbrew/application/repository/StakingLedgerRepository.class
+dev/alexisreyna/artisanalbrew/application/service/wallet/EvmWalletChallengeService.class
 dev/alexisreyna/artisanalbrew/application/dto/UserProfileDto.class
 dev/alexisreyna/artisanalbrew/application/repository/WalletIdentityRepository.class
 dev/alexisreyna/artisanalbrew/application/service/commerce/AgenticCommerceReconciliationApplicator.class
@@ -156,6 +159,7 @@ dev/alexisreyna/artisanalbrew/application/service/UserOperationSponsor.class
 dev/alexisreyna/artisanalbrew/application/service/IntentQuoteRequest.class
 dev/alexisreyna/artisanalbrew/application/service/commerce/DefaultAgenticCommerceReconciliationApplicator$1.class
 dev/alexisreyna/artisanalbrew/application/service/blockchain/StakingCalldataDecoder$1.class
+dev/alexisreyna/artisanalbrew/application/service/wallet/EvmWalletChallenge.class
 dev/alexisreyna/artisanalbrew/application/config/ChainCapabilities.class
 dev/alexisreyna/artisanalbrew/application/dto/UpdateCouponRequest.class
 dev/alexisreyna/artisanalbrew/application/repository/ApplicationUserProfileSnapshot.class

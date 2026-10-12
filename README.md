@@ -94,9 +94,21 @@ Requires Java 21+ (`mvn -v` must show a 21+ runtime; Homebrew `maven` + `openjdk
 | Spring Boot snake-case physical naming | Must pin `PhysicalNamingStrategyStandardImpl` — Boot's strategy rewrites even quoted identifiers, destroying the EF naming parity |
 
 Deferred to later phases: blockchain gateways, sponsorship/solver policies,
-`AgenticJobService` impl, Identity behavior (tables are already in V1), Azure/
+`AgenticJobService` impl, ~~Identity behavior (tables are already in V1)~~, Azure/
 email/receipt services, workers (their tables are in V1; entities/adapters land
 with Phase 8), Blazor → Thymeleaf UI.
+
+## Phase 4 notes (security)
+
+| .NET | Java here |
+|---|---|
+| `UserManager`/`SignInManager` + PBKDF2 Identity V3 hashes | `JpaIdentityAccountService` + `AspNetIdentityPasswordEncoder`: verifies V3 (`0x01\|prf\|iter\|salt\|subkey`) so existing passwords keep working, issues BCrypt for new ones (V3 has no `{id}` prefix, so a delegating encoder can't route it — hence the hand-rolled probe) |
+| 5 failures → 15 min lockout | Reimplemented on the mapped `AccessFailedCount`/`LockoutEnd` columns |
+| `Nethereum` `EncodeUTF8AndEcRecover` (personal_sign) | Hand-rolled secp256k1 recovery on Bouncy Castle (`EvmSignatureRecovery`); EVM challenges stay in-memory like `IMemoryCache`, Solana challenges stay persistent |
+| BouncyCastle C# `Ed25519Signer` | BouncyCastle Java `Ed25519Signer` — same library, same vectors |
+| `sealed` service + `@Transactional`-style interception | Proxied beans must be non-final: `sealed` is free in .NET, `final` breaks CGLIB subclassing |
+| `RequireAdmin` policy, cookie + `XSRF-TOKEN` antiforgery, `/admin/login-action` 302s | `SecurityFilterChain` with method-specific matchers (order matters: `/api/orders/me` before `/api/orders/**`), `CookieCsrfTokenRepository` with matching cookie/header names |
+| `sealed` everywhere else | Still `final` — only container-proxied beans pay the price |
 
 ## Fidelity checks
 

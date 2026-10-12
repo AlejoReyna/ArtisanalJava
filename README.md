@@ -28,6 +28,11 @@ artisanalbrew-infrastructure/    mirrors ThisCafeteria.Infrastructure persistenc
   .../persistence/entity/        20 flat JPA rows, EF table/column names preserved
   .../persistence/repo/          Spring Data interfaces (incl. atomic tryConsume UPDATE)
   .../persistence/adapter/       all 13 repository ports + JPA UnitOfWork
+artisanalbrew-web/                mirrors ThisCafeteria.Web HTTP surface (Phase 5a)
+  ArtisanalBrewApplication + application.yml (PG-first, env secrets)
+  .../web/api/                  all 14 REST controllers (AdminAuth → form login)
+  .../web/{chain,cart,auth}      SelectedChainAccessor, SessionCartService, WalletSession
+  .../web/{config,support}       use-case wiring, enum wire format, 401s, rate limits
 ```
 
 Phase 2b (next): ~~use-case implementations (`ProductService`, `OrderService`,

@@ -1,0 +1,72 @@
+# Mirrors appsettings.json. Secrets come from the environment, never git:
+#   SPRING_DATASOURCE_URL / SPRING_DATASOURCE_USERNAME / SPRING_DATASOURCE_PASSWORD
+#   ARTISANALBREW_EVM_MANIFEST / ARTISANALBREW_SOLANA_MANIFEST
+#   AUTHENTICATION_ADMINEMAIL / AUTHENTICATION_ADMINPASSWORD
+#   AGENT_GATEWAY_SERVICE_SECRET
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/thiscafeteria}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  flyway:
+    enabled: true
+  session:
+    timeout: 8h
+
+artisanalbrew:
+  blockchain:
+    default-chain-key: ethereum-sepolia
+    local-evm-manifest: ${ARTISANALBREW_EVM_MANIFEST:deployments/ethereum-sepolia.json;deployments/bsc-testnet.json}
+    solana-deployment-manifest: ${ARTISANALBREW_SOLANA_MANIFEST:deployments/solana-devnet.json}
+  network:
+    network-name: Ethereum Sepolia
+    chain-id: 11155111
+    chain-id-hex: "0xaa36a7"
+    rpc-url: https://ethereum-sepolia-rpc.publicnode.com
+    explorer-url: https://sepolia.etherscan.io/
+
+authentication:
+  admin-email: ${AUTHENTICATION_ADMINEMAIL:}
+  admin-password: ${AUTHENTICATION_ADMINPASSWORD:}
+
+agent-gateway:
+  service-secret: ${AGENT_GATEWAY_SERVICE_SECRET:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-components: always
+      group:
+        live:
+          include: livenessState
+        ready:
+          include: readinessState,db,diskSpace,ping
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+springdoc:
+  api-docs:
+    path: /openapi.json
+  swagger-ui:
+    path: /swagger

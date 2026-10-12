@@ -8,6 +8,8 @@ dev/alexisreyna/artisanalbrew/infrastructure/security/SecuritySmokeTest.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/WalletChallengePersistenceTest.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/SolanaWalletChallengeServiceTest$Keypair.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/IdempotentWriteTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/SolverPolicyTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/DatabaseSchemaServiceTest.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProfileAvatarPersistenceTest.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/AspNetIdentityPasswordEncoderTest.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/EvmWalletAuthTest.class

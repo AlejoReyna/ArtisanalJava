@@ -1,4 +1,5 @@
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaTransparencyRecordRepositoryAdapter.class
+dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredChainServices.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaRewardClaimRepositoryAdapter.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/CartItemEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/CouponRedemptionEntity.class
@@ -8,13 +9,20 @@ dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/UserProfileJpaRepo
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/OrderItemEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/AgentDirectoryEntryEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaStakingLedgerRepositoryAdapter.class
+dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredRewardClaimService.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/StakingLedgerEntryJpaRepository.class
+dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredCoffeeWeb3Service.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/LoggingSqsMessagePublisher.class
+dev/alexisreyna/artisanalbrew/infrastructure/security/WebSecurityRules.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/JpaAdminIdentitySeeder.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/UserRoleEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/AgenticJobAppliedEventEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/convert/DotNetEnumConverters$OrderStatusConverter.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaWalletIdentityRepositoryAdapter.class
+dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredLiquidStakingGateway.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/TransparencyRecordEntity.class
+dev/alexisreyna/artisanalbrew/infrastructure/config/InfrastructureDefaults.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/DefaultSolverPolicyService.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaAgenticCommerceProjectionBatch.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/AgenticJobAppliedEventJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/ProductJpaRepository.class
@@ -27,6 +35,7 @@ dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaOrderReposit
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/OrderJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/EvmSignatureRecovery.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/SolanaFaucetClaimEntity.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/DefaultIntentQuoteService.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/CouponRedemptionJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/OrderItemJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/AspNetIdentityPasswordEncoder.class
@@ -36,6 +45,7 @@ dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/StakingLedgerEnt
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/RewardClaimJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/security/SecurityConfiguration.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/AgenticJobDeferredEventEntity.class
+dev/alexisreyna/artisanalbrew/infrastructure/stub/UnconfiguredSolanaFaucetService.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/AgenticJobProjectionEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/PersistenceConfiguration.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/convert/DotNetEnumConverters$RoastLevelConverter.class
@@ -57,6 +67,7 @@ dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/ApplicationUserE
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/UserProfileEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaUnitOfWork$TemplateTransaction.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaUnitOfWork.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/DatabaseSchemaServiceImpl$CachedSchema.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/entity/WalletStatusEventEntity.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/UserRoleJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaSolanaFaucetClaimRepositoryAdapter.class
@@ -64,6 +75,7 @@ dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaCouponReposi
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/adapter/JpaWalletAuthChallengeRepositoryAdapter.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/CartJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/SolanaFaucetClaimJpaRepository.class
+dev/alexisreyna/artisanalbrew/infrastructure/service/DatabaseSchemaServiceImpl.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/convert/DotNetEnumConverters$ProductCategoryConverter.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/repo/WalletStatusEventJpaRepository.class
 dev/alexisreyna/artisanalbrew/infrastructure/persistence/convert/DotNetEnumConverters$UserRoleConverter.class

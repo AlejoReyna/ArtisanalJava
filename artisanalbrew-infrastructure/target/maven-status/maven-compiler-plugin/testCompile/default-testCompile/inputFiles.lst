@@ -11,3 +11,5 @@
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/security/IdentityAccountServiceTest.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/security/SecuritySmokeTest.java
 /Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/security/SolanaWalletChallengeServiceTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/service/DatabaseSchemaServiceTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/service/SolverPolicyTest.java

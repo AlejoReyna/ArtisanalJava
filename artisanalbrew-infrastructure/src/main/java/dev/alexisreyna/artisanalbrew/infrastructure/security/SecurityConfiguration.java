@@ -1,5 +1,7 @@
 package dev.alexisreyna.artisanalbrew.infrastructure.security;
 
+import dev.alexisreyna.artisanalbrew.application.repository.WalletAuthChallengeRepository;
+import dev.alexisreyna.artisanalbrew.application.service.wallet.SolanaWalletChallengeService;
 import dev.alexisreyna.artisanalbrew.infrastructure.persistence.repo.ApplicationUserJpaRepository;
 import dev.alexisreyna.artisanalbrew.infrastructure.persistence.repo.RoleJpaRepository;
 import dev.alexisreyna.artisanalbrew.infrastructure.persistence.repo.UserProfileJpaRepository;
@@ -7,14 +9,9 @@ import dev.alexisreyna.artisanalbrew.infrastructure.persistence.repo.UserRoleJpa
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * Web security composition (mirrors {@code Web/Program.cs} auth wiring).
@@ -29,10 +26,11 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
  *   <li>{@code /admin/login-action} form + 302s → form login handlers below.</li>
  * </ul>
  * Wallet endpoints and the 8-hour sliding cookie land with the Phase 5
- * controllers; rate limiting follows with the web module.
+ * controllers; the HTTP rules themselves live in {@link WebSecurityRules} so
+ * web slice tests can enforce them without the data layer.
  */
 @Configuration
-@EnableWebSecurity
+@Import(WebSecurityRules.class)
 public class SecurityConfiguration {
 
     @Bean
@@ -62,42 +60,9 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        CookieCsrfTokenRepository csrfTokens = new CookieCsrfTokenRepository();
-        csrfTokens.setCookieName("XSRF-TOKEN");
-        csrfTokens.setHeaderName("X-CSRF-TOKEN");
-
-        SimpleUrlAuthenticationSuccessHandler success = new SimpleUrlAuthenticationSuccessHandler("/admin");
-        SimpleUrlAuthenticationFailureHandler failure =
-                new SimpleUrlAuthenticationFailureHandler("/admin/login?error=1");
-
-        http
-                .csrf(csrf -> csrf
-                        .csrfTokenRepository(csrfTokens)
-                        .ignoringRequestMatchers("/admin/logout"))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/products/**").permitAll()
-                        .requestMatchers("/api/products/**").hasRole("ADMIN")
-                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/orders").authenticated()
-                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/orders/me").authenticated()
-                        .requestMatchers("/api/orders/**").hasRole("ADMIN")
-                        .requestMatchers("/api/profile/**").authenticated()
-                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/rewards/api/claim").authenticated()
-                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/wallet-status").authenticated()
-                        .requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll())
-                .formLogin(form -> form
-                        .loginProcessingUrl("/admin/login-action")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .successHandler(success)
-                        .failureHandler(failure)
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/admin/logout")
-                        .logoutSuccessUrl("/")
-                        .permitAll());
-        return http.build();
+    public SolanaWalletChallengeService solanaWalletChallengeService(
+            WalletAuthChallengeRepository challenges) {
+        return new DefaultSolanaWalletChallengeService(challenges);
     }
 
     @Bean

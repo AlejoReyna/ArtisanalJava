@@ -110,6 +110,22 @@ with Phase 8), Blazor → Thymeleaf UI.
 | `RequireAdmin` policy, cookie + `XSRF-TOKEN` antiforgery, `/admin/login-action` 302s | `SecurityFilterChain` with method-specific matchers (order matters: `/api/orders/me` before `/api/orders/**`), `CookieCsrfTokenRepository` with matching cookie/header names |
 | `sealed` everywhere else | Still `final` — only container-proxied beans pay the price |
 
+## Phase 5a notes (web)
+
+| .NET | Java here |
+|---|---|
+| Controllers + `[Authorize]`/`[ValidateAntiForgeryToken]` attributes | Same routes/statuses; authz centralized in the filter chain, validation errors via `@ControllerAdvice` (same 400 shapes) |
+| Enums as int codes on the wire (System.Text.Json default) | `DotNetEnumJacksonModule` (codes both ways); the domain stays Jackson-free |
+| `IMemoryCache` EVM challenges, session `WalletAddress` | Same semantics (in-memory map, `HttpSession` attrs); Solana stays persistent |
+| `ResponseCache(60)` on transparency | `Cache-Control: max-age=60` |
+| `"sensitive"` rate limiter (30/min/IP, 429) | `RateLimitFilter` on the same path prefixes (single-instance; note on Redis for replicas) |
+| `AdminAuthController` custom endpoints | Replaced by form login (`/admin/login-action` → 302s); no controller needed |
+| `XSRF-TOKEN` readable cookie + `X-CSRF-TOKEN` header | Same names in `CookieCsrfTokenRepository`; `/api/cart/**` ignored like `[IgnoreAntiforgeryToken]` |
+| Anonymous API access | 401 via entry points for `/api/**`, `/staking/**`, `/rewards/**`, `/faucet/**`, `/internal/**` (no login redirect until 5b pages) |
+| `dotnet run` without a database (`hasDatabase=false`) | Not ported: the web module requires PostgreSQL (documented; H2 twin only for tests) |
+| Missing compiler `-parameters` | Added globally — without it Spring cannot bind `@RequestParam`/`@PathVariable` names (caught by a 400 in the first slice run) |
+| `@ConditionalOnMissingBean` on scanned `@Service` stubs | Silently drops beans — must live on an explicit `@Configuration` (`UnconfiguredChainServices`) |
+
 ## Fidelity checks
 
 - `Order.place` starts in `PROCESSING` (quirk preserved); `transitionTo` enforces

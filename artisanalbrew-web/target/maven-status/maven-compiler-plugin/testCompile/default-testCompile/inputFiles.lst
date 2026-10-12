@@ -1,0 +1,17 @@
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/WebCompositionTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/AgentResourceControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/CartControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/ChainsControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/IntentsControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/LiquidStakingControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/OrdersControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/ProductsControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/ProfileControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/RewardsControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/SolanaFaucetControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/StakingControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/TransparencyControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/WalletAuthControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/api/WalletStatusControllerTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/cart/SessionCartServiceTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-web/src/test/java/dev/alexisreyna/artisanalbrew/web/support/DotNetEnumJacksonModuleTest.java

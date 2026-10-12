@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:webtest;MODE=PostgreSQL;DATABASE_TO_LOWER=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  flyway:
+    enabled: true
+    locations: classpath:db/migration-h2
+
+artisanalbrew:
+  blockchain:
+    default-chain-key: ethereum-sepolia
+    local-evm-manifest: ../../ArtisanalBrew/deployments/ethereum-sepolia.json;../../ArtisanalBrew/deployments/bsc-testnet.json
+    solana-deployment-manifest: ../../ArtisanalBrew/deployments/solana-devnet.json
+
+logging:
+  level:
+    org.flywaydb: WARN
+    org.hibernate.SQL: WARN

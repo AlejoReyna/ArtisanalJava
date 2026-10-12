@@ -27,6 +27,26 @@ public class Coupon {
         return coupon;
     }
 
+    /**
+     * Rebuilds a coupon from persisted state. EF Core does this through the
+     * private constructor plus private setters; Java needs the named factory
+     * because the fields stay private. No validation: the row was valid when
+     * written, and re-validating on read would turn historic rows into errors.
+     */
+    public static Coupon rehydrate(UUID id, String code, String normalizedCode, BigDecimal discountPercent,
+                                   BigDecimal minimumOrderTotal, boolean active, Instant createdAt, Instant updatedAt) {
+        Coupon coupon = new Coupon();
+        coupon.id = id;
+        coupon.code = code;
+        coupon.normalizedCode = normalizedCode;
+        coupon.discountPercent = discountPercent;
+        coupon.minimumOrderTotal = minimumOrderTotal;
+        coupon.active = active;
+        coupon.createdAt = createdAt;
+        coupon.updatedAt = updatedAt;
+        return coupon;
+    }
+
     public void update(String code, BigDecimal discountPercent, BigDecimal minimumOrderTotal, boolean isActive, Instant updatedAtUtc) {
         if (code == null || code.isBlank()
                 || discountPercent == null || discountPercent.signum() <= 0

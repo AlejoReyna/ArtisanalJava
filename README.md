@@ -15,12 +15,19 @@ artisanalbrew-domain/            mirrors ThisCafeteria.Domain
 artisanalbrew-application/       mirrors ThisCafeteria.Application (Phase 2a: ports)
   .../application/dto/           20 records/classes (+3 schema records)
   .../application/repository/    13 ports + snapshot + StakingLedgerWriteResult + UnitOfWork
-  .../application/service/       service ports (+DefaultOrderPricingService impl)
+  .../application/service/       service ports (+Default* use-case implementations)
   .../application/service/blockchain/  ports + pure helpers (Keccak/Solana codecs)
   .../application/service/rewards|wallet/  ports + RewardCalculator
-  .../application/config/        chain model + registry + fail-closed options
+  .../application/service/commerce/  reconciliation applicator
+  .../application/config/        chain model + registry + manifest loader + fail-closed options
   .../application/validation/    hand-rolled validators (no FluentValidation)
   .../application/common/        SlugGenerator
+artisanalbrew-infrastructure/    mirrors ThisCafeteria.Infrastructure persistence (Phase 3)
+  src/main/resources/db/migration/V1__baseline.sql        PG-exact squash of 33 EF migrations
+  src/main/resources/db/migration-h2/V1__baseline.sql    H2 twin (partial-index WHERE dropped)
+  .../persistence/entity/        20 flat JPA rows, EF table/column names preserved
+  .../persistence/repo/          Spring Data interfaces (incl. atomic tryConsume UPDATE)
+  .../persistence/adapter/       all 13 repository ports + JPA UnitOfWork
 ```
 
 Phase 2b (next): ~~use-case implementations (`ProductService`, `OrderService`,
@@ -71,6 +78,25 @@ Requires Java 21+ (`mvn -v` must show a 21+ runtime; Homebrew `maven` + `openjdk
 | C# `init` records with `required` members | Java records with compact-canonical defaults where needed |
 | `decimal` APR math (`apr/365/100`) | `BigDecimal` divide by `36500`, scale 18, `HALF_UP` |
 | `decimal.Round(usd/rate, 18, ToZero)` (checkout) | `divide(rate, 18, DOWN)` (`DefaultOrderPricingService`) |
+
+## Phase 3 notes (persistence)
+
+| .NET | Java here |
+|---|---|
+| 33 EF migrations + snapshot | One Flyway `V1__baseline.sql`, machine-generated from the snapshot (same tables/columns/indexes/FKs); `migration-h2` twin drops partial-index `WHERE` (H2 lacks them — NULLs stay distinct in `UNIQUE` on both engines, verified by `MigrationParityTest`) |
+| Domain classes as EF entities (private ctor + private setters) | Separate flat JPA rows + explicit `rehydrate` factories on `Order`/`Coupon` (added to domain — the honest Java equivalent) |
+| String enums (`HasConversion<string>`) | Explicit `AttributeConverter`s preserving C# member names (`Pending`, `Beans`, …) — `EnumType.STRING` would store `PENDING`/`BEANS` and break existing rows |
+| Owned `Avatar` → one `jsonb` column | Same PascalCase JSON object as `VARCHAR` (PG treats both identically; H2-validatable) |
+| `ExecuteUpdateAsync` conditional consume | `@Modifying` JPQL `UPDATE … WHERE consumed IS NULL` returning row count + `refresh()` after (JPA bulk updates, unlike EF, never sync the context) |
+| `DbUpdateException` catch → detach entry | Catch `PersistenceException`/`DataAccessException` (translation happens at the repo proxy, so both shapes escape) + `clear()` — `detach()` does not remove a failed insert from Hibernate's action queue |
+| `IDbContextFactory` per-operation contexts | Stateless singleton adapters (an `EntityManager` is never shared, so the Blazor-circuit rationale disappears) |
+| EF change tracking across applicator staging | Explicit `stageJob` write-back of every mutated projection |
+| Spring Boot snake-case physical naming | Must pin `PhysicalNamingStrategyStandardImpl` — Boot's strategy rewrites even quoted identifiers, destroying the EF naming parity |
+
+Deferred to later phases: blockchain gateways, sponsorship/solver policies,
+`AgenticJobService` impl, Identity behavior (tables are already in V1), Azure/
+email/receipt services, workers (their tables are in V1; entities/adapters land
+with Phase 8), Blazor → Thymeleaf UI.
 
 ## Fidelity checks
 

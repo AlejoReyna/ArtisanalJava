@@ -1,0 +1,8 @@
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/FlywayBaselineTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/IdempotentWriteTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/MigrationParityTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProductOrderFlowTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProfileAvatarPersistenceTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProjectionBatchFlowTest.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/TestApplication.java
+/Users/alexis_reyna/MyCode/ArtisanalBrew-spring/artisanalbrew-infrastructure/src/test/java/dev/alexisreyna/artisanalbrew/infrastructure/persistence/WalletChallengePersistenceTest.java

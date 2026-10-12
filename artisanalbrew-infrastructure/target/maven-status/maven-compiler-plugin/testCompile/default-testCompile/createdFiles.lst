@@ -1,0 +1,8 @@
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/FlywayBaselineTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/IdempotentWriteTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/MigrationParityTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProjectionBatchFlowTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/TestApplication.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProfileAvatarPersistenceTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/WalletChallengePersistenceTest.class
+dev/alexisreyna/artisanalbrew/infrastructure/persistence/ProductOrderFlowTest.class

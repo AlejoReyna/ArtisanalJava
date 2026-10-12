@@ -82,6 +82,46 @@ public class Order {
         this.updatedAt = Instant.now();
     }
 
+    /**
+     * Rebuilds an order from persisted state (see {@code Coupon#rehydrate} for
+     * why this exists: EF Core rehydrates through private setters, Java
+     * through an explicit factory). No validation on read.
+     */
+    public static Order rehydrate(UUID id, String orderNumber, UUID userProfileId, OrderStatus status,
+                                  BigDecimal subtotal, BigDecimal shipping, BigDecimal tax,
+                                  UUID couponId, String couponCode, BigDecimal couponDiscountPercent,
+                                  BigDecimal discountAmount, BigDecimal total, String walletAddress,
+                                  String paymentTransactionHash, Integer paymentChainId, String paymentNetworkName,
+                                  BigDecimal paymentEthAmount, String paymentExplorerUrl, Instant paidAtUtc,
+                                  Instant createdAt, Instant updatedAt,
+                                  List<OrderItem> items, List<TransparencyRecord> transparencyRecords) {
+        Order order = new Order();
+        order.id = id;
+        order.orderNumber = orderNumber;
+        order.userProfileId = userProfileId;
+        order.status = status;
+        order.subtotal = subtotal;
+        order.shipping = shipping;
+        order.tax = tax;
+        order.couponId = couponId;
+        order.couponCode = couponCode;
+        order.couponDiscountPercent = couponDiscountPercent;
+        order.discountAmount = discountAmount;
+        order.total = total;
+        order.walletAddress = walletAddress;
+        order.paymentTransactionHash = paymentTransactionHash;
+        order.paymentChainId = paymentChainId;
+        order.paymentNetworkName = paymentNetworkName;
+        order.paymentEthAmount = paymentEthAmount;
+        order.paymentExplorerUrl = paymentExplorerUrl;
+        order.paidAtUtc = paidAtUtc;
+        order.createdAt = createdAt;
+        order.updatedAt = updatedAt;
+        order.items = new ArrayList<>(items);
+        order.transparencyRecords = new ArrayList<>(transparencyRecords);
+        return order;
+    }
+
     public void transitionTo(OrderStatus nextStatus) {
         boolean allowed = switch (status) {
             case PENDING -> nextStatus == OrderStatus.PROCESSING || nextStatus == OrderStatus.CANCELLED;

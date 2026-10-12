@@ -34,6 +34,11 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
         boolean alreadyDeferred = batch.hasDeferredEvent(
                 chain.getKey(), escrowAddress, event.getTransactionHash(), event.getLogIndex());
 
+        // The job this event mutates, if any. Unlike EF Core change tracking —
+        // where FindJobAsync returns a tracked entity saved by the caller's
+        // SaveChanges — staged mutations here must be written back explicitly.
+        AgenticJobProjection touched = null;
+
         switch (event.getType()) {
             case JOB_CREATED -> {
                 if (batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).isEmpty()) {
@@ -72,7 +77,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                     return;
                 }
                 job.setProviderAddress(event.getProvider());
-                touch(job, event);
+                touched = touch(job, event);
             }
             case BUDGET_SET -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -87,7 +92,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                     break;
                 }
                 job.setBudget(toUnits(event.getAmount()));
-                touch(job, event);
+                touched = touch(job, event);
             }
             case JOB_FUNDED -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -104,7 +109,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                 job.setStatus(AgenticJobProjection.STATUS_FUNDED);
                 job.setBudget(toUnits(event.getAmount()));
                 job.setFundedTransactionHash(event.getTransactionHash());
-                touch(job, event);
+                touched = touch(job, event);
             }
             case JOB_SUBMITTED -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -123,7 +128,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                 }
                 job.setStatus(AgenticJobProjection.STATUS_SUBMITTED);
                 job.setDeliverableCommitment(event.getDeliverable());
-                touch(job, event);
+                touched = touch(job, event);
             }
             case JOB_COMPLETED -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -146,7 +151,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                 job.setStatus(AgenticJobProjection.STATUS_COMPLETED);
                 job.setDecisionReason(event.getReason());
                 job.setCompletionTransactionHash(event.getTransactionHash());
-                touch(job, event);
+                touched = touch(job, event);
             }
             case JOB_REJECTED -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -171,7 +176,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                 job.setStatus(AgenticJobProjection.STATUS_REJECTED);
                 job.setDecisionReason(event.getReason());
                 job.setCompletionTransactionHash(event.getTransactionHash());
-                touch(job, event);
+                touched = touch(job, event);
             }
             case JOB_EXPIRED -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -193,7 +198,7 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                 }
                 job.setStatus(AgenticJobProjection.STATUS_EXPIRED);
                 job.setCompletionTransactionHash(event.getTransactionHash());
-                touch(job, event);
+                touched = touch(job, event);
             }
             case PAYMENT_RELEASED, REFUNDED -> {
                 var job = batch.findJob(chain.getKey(), escrowAddress, event.getOnChainJobId()).orElse(null);
@@ -204,11 +209,16 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
                     }
                     return;
                 }
-                touch(job, event);
+                touched = touch(job, event);
             }
         }
 
         // Reached only by applied/idempotent paths — never by deferred early-returns.
+        // Explicit write-back: without EF change tracking, the mutated projection
+        // above would otherwise never reach the database.
+        if (touched != null) {
+            batch.stageJob(touched);
+        }
         AgenticJobAppliedEvent applied = new AgenticJobAppliedEvent();
         applied.setChainKey(chain.getKey());
         applied.setContractAddress(escrowAddress);
@@ -245,10 +255,11 @@ public final class DefaultAgenticCommerceReconciliationApplicator implements Age
         batch.stageAppliedEvent(applied);
     }
 
-    private static void touch(AgenticJobProjection job, EscrowEvent event) {
+    private static AgenticJobProjection touch(AgenticJobProjection job, EscrowEvent event) {
         job.setLastReconciledBlock(event.getBlockNumber());
         job.setUpdatedAtUtc(Instant.now());
         job.setConcurrencyToken(job.getConcurrencyToken() + 1);
+        return job;
     }
 
     private static void recordDeferred(AgenticCommerceProjectionBatch batch, String chainKey,
